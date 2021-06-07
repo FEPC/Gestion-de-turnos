@@ -11,5 +11,7 @@ public interface IServicioService {
 	public ServicioEntity busquedaId(Integer id);
 	
 	public ServicioEntity crearServicio(ServicioEntity servicioEntity);
+	
+	public ServicioEntity editarServicio(ServicioEntity servicioEntity);
 
 }

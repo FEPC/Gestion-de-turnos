@@ -42,5 +42,11 @@ public class ServicioController {
 			return null;
 		}
 	}
+	
+	//Editar
+	@PostMapping(path = "/editar", consumes = "application/json", produces = "application/json")
+	public ServicioEntity editarServicio(@RequestBody ServicioEntity entity) {
 
+		return servicioService.editarServicio(entity);
+	}
 }
