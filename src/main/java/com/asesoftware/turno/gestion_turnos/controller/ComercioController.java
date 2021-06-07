@@ -44,10 +44,17 @@ public class ComercioController {
 	}
 	
 	//Editar
-	//Creación
-		@PostMapping(path = "/editar", consumes = "application/json", produces = "application/json")
-		public ComercioEntity editarComercio(@RequestBody ComercioEntity entity) {
+	@PostMapping(path = "/editar", consumes = "application/json", produces = "application/json")
+	public ComercioEntity editarComercio(@RequestBody ComercioEntity entity) {
 
-			return comercioService.editarComercio(entity);
-		}
+		return comercioService.editarComercio(entity);
+	}
+	
+	//Eliminar
+	@GetMapping(path = "/eliminar/{id}")
+	public void eliminarComercio(@PathVariable Integer id) {
+		
+		comercioService.eliminarComercio(id);
+	}
+	
 }
