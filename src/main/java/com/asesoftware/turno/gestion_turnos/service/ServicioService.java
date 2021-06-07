@@ -33,4 +33,10 @@ public class ServicioService implements IServicioService{
 		}
 	}
 
+	@Override
+	public ServicioEntity crearServicio(ServicioEntity servicioEntity) {
+		
+		return servicioRepositorio.save(servicioEntity);
+	}
+
 }
