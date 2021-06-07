@@ -27,7 +27,7 @@ public class ServicioController {
 	}
 	
 	//Busqueda de elemnto por ID
-	@GetMapping(path = "/{id}")
+	@GetMapping(path = "/buscar/{id}")
 	public ServicioEntity busquedaId(@PathVariable Integer id){
 		return servicioService.busquedaId(id);
 	}
@@ -48,5 +48,12 @@ public class ServicioController {
 	public ServicioEntity editarServicio(@RequestBody ServicioEntity entity) {
 
 		return servicioService.editarServicio(entity);
+	}
+	
+	//Eliminar
+	@GetMapping(path = "/eliminar/{id}")
+	public void eliminarServicio(@PathVariable Integer id) {
+		
+		servicioService.eliminarServicio(id);
 	}
 }

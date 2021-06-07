@@ -45,4 +45,10 @@ public class ServicioService implements IServicioService{
 		return servicioRepositorio.save(servicioEntity);
 	}
 
+	@Override
+	public void eliminarServicio(Integer id) {
+		
+		servicioRepositorio.deleteById(id);
+	}
+
 }
