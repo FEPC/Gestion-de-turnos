@@ -42,4 +42,12 @@ public class ComercioController {
 			return null;
 		}
 	}
+	
+	//Editar
+	//Creación
+		@PostMapping(path = "/editar", consumes = "application/json", produces = "application/json")
+		public ComercioEntity editarComercio(@RequestBody ComercioEntity entity) {
+
+			return comercioService.editarComercio(entity);
+		}
 }

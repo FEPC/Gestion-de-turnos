@@ -40,4 +40,10 @@ public class ComercioService implements IComercioService{
 		return comercioRepositorio.save(comercioEntity);
 	}
 
+	@Override
+	public ComercioEntity editarComercio(ComercioEntity comercioEntity) {
+		
+		return comercioRepositorio.save(comercioEntity);
+	}
+
 }
