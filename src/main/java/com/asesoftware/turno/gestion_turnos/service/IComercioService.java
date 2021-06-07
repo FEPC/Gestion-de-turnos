@@ -7,5 +7,7 @@ import com.asesoftware.turno.gestion_turnos.entity.ComercioEntity;
 public interface IComercioService {
 	
 	public List<ComercioEntity> obtenerTodo();
+	
+	public ComercioEntity busquedaId(Integer id); 
 
 }
