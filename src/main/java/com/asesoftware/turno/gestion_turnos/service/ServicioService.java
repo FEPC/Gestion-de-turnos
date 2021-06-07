@@ -1,6 +1,7 @@
 package com.asesoftware.turno.gestion_turnos.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,18 @@ public class ServicioService implements IServicioService{
 	public List<ServicioEntity> obtenerTodo() {
 		
 		return servicioRepositorio.findAll();
+	}
+
+	@Override
+	public ServicioEntity busquedaId(Integer id) {
+		
+		Optional<ServicioEntity> opcional = servicioRepositorio.findById(id);
+		
+		if(opcional.isPresent()) {
+			return opcional.get();
+		}else {
+			return null;
+		}
 	}
 
 }
