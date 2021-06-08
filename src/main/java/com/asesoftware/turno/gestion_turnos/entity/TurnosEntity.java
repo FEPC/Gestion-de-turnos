@@ -1,6 +1,6 @@
 package com.asesoftware.turno.gestion_turnos.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +18,8 @@ public class TurnosEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_turnos")
-	private Integer id_turnos;
+	@Column(name = "id_turno")
+	private Integer id_turno;
 	
 	@Column(name = "id_servicio")
 	private Integer id_servicio;
