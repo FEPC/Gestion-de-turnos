@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.asesoftware.turno.gestion_turnos.dto.ComercioDTO;
 import com.asesoftware.turno.gestion_turnos.entity.ComercioEntity;
 import com.asesoftware.turno.gestion_turnos.entity.ServicioEntity;
 import com.asesoftware.turno.gestion_turnos.service.IComercioService;
@@ -23,21 +24,21 @@ public class ComercioController {
 	
 	//Listar todos los datos
 	@GetMapping(path = "/todos")
-	public List<ComercioEntity> obtenerTodo(){
+	public List<ComercioDTO> obtenerTodo(){
 		return comercioService.obtenerTodo();
 	}
 	
 	//Busqueda de elemnto por ID
 	@GetMapping(path = "/buscar/{id}")
-	public ComercioEntity busquedaId(@PathVariable Integer id){
+	public ComercioDTO busquedaId(@PathVariable Integer id){
 		return comercioService.busquedaId(id);
 	}
 	
 	//Creación
 	@PostMapping(path = "/crear", consumes = "application/json", produces = "application/json")
-	public ComercioEntity crearComercio(@RequestBody ComercioEntity entity) {
+	public ComercioDTO crearComercio(@RequestBody ComercioDTO comercioDto) {
 		try {
-			return comercioService.crearComercio(entity);
+			return comercioService.crearComercio(comercioDto);
 		}catch(Exception e) {
 			return null;
 		}
@@ -45,9 +46,9 @@ public class ComercioController {
 	
 	//Editar
 	@PostMapping(path = "/editar", consumes = "application/json", produces = "application/json")
-	public ComercioEntity editarComercio(@RequestBody ComercioEntity entity) {
+	public ComercioDTO editarComercio(@RequestBody ComercioDTO comercioDto) {
 
-		return comercioService.editarComercio(entity);
+		return comercioService.editarComercio(comercioDto);
 	}
 	
 	//Eliminar

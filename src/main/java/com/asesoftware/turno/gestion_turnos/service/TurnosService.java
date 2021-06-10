@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.asesoftware.turno.gestion_turnos.dto.TurnosDTO;
 import com.asesoftware.turno.gestion_turnos.entity.TurnosEntity;
+import com.asesoftware.turno.gestion_turnos.mapper.ITurnosMapper;
 import com.asesoftware.turno.gestion_turnos.repository.ITurnosRepositorio;
 
 @Service
@@ -13,11 +15,14 @@ public class TurnosService implements ITurnosService{
 	
 	@Autowired
 	private ITurnosRepositorio turnosRepositorio;
-
+	
+	@Autowired
+	private ITurnosMapper mapperTurnos;
+	
 	@Override
-	public List<TurnosEntity> obtenerTodo() {
+	public List<TurnosDTO> obtenerTodo() {
 		
-		return turnosRepositorio.findAll();
+		return mapperTurnos.listaentityToDto(turnosRepositorio.findAll());
 	}
 
 }

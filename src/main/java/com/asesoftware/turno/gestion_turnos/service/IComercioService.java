@@ -2,17 +2,17 @@ package com.asesoftware.turno.gestion_turnos.service;
 
 import java.util.List;
 
-import com.asesoftware.turno.gestion_turnos.entity.ComercioEntity;
+import com.asesoftware.turno.gestion_turnos.dto.ComercioDTO;
 
 public interface IComercioService {
 	
-	public List<ComercioEntity> obtenerTodo();
+	public List<ComercioDTO> obtenerTodo();
 	
-	public ComercioEntity busquedaId(Integer id); 
+	public ComercioDTO busquedaId(Integer id); 
 	
-	public ComercioEntity crearComercio(ComercioEntity comercioEntity);
+	public ComercioDTO crearComercio(ComercioDTO comercioDto);
 	
-	public ComercioEntity editarComercio(ComercioEntity comercioEntity);
+	public ComercioDTO editarComercio(ComercioDTO comercioDto);
 	
 	public void eliminarComercio(Integer id);
 

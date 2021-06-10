@@ -2,17 +2,18 @@ package com.asesoftware.turno.gestion_turnos.service;
 
 import java.util.List;
 
-import com.asesoftware.turno.gestion_turnos.entity.ServicioEntity;
+import com.asesoftware.turno.gestion_turnos.dto.ServicioDTO;
+import com.asesoftware.turno.gestion_turnos.dto.TurnosDTO;
 
 public interface IServicioService {
 	
-	public List<ServicioEntity> obtenerTodo();
+	public List<ServicioDTO> obtenerTodo();
 	
-	public ServicioEntity busquedaId(Integer id);
+	public ServicioDTO busquedaId(Integer id);
 	
-	public ServicioEntity crearServicio(ServicioEntity servicioEntity);
+	public ServicioDTO crearServicio(ServicioDTO servicioDto);
 	
-	public ServicioEntity editarServicio(ServicioEntity servicioEntity);
+	public ServicioDTO editarServicio(ServicioDTO servicioDto);
 	
 	public void eliminarServicio(Integer id);
 

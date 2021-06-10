@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.asesoftware.turno.gestion_turnos.dto.ServicioDTO;
 import com.asesoftware.turno.gestion_turnos.entity.ServicioEntity;
 import com.asesoftware.turno.gestion_turnos.service.IServicioService;
 
@@ -22,22 +23,22 @@ public class ServicioController {
 	
 	//Listar todos los datos
 	@GetMapping(path = "/todos")
-	public List<ServicioEntity> obtenerTodo(){
+	public List<ServicioDTO> obtenerTodo(){
 		return servicioService.obtenerTodo();
 	}
 	
 	//Busqueda de elemnto por ID
 	@GetMapping(path = "/buscar/{id}")
-	public ServicioEntity busquedaId(@PathVariable Integer id){
+	public ServicioDTO busquedaId(@PathVariable Integer id){
 		return servicioService.busquedaId(id);
 	}
 	
 	//Creación
 	@PostMapping(path = "/crear", consumes = "application/json", produces = "application/json")
-	public ServicioEntity crearServicio(@RequestBody ServicioEntity entity) {
+	public ServicioDTO crearServicio(@RequestBody ServicioDTO servicioDto) {
 		
 		try {
-			return servicioService.crearServicio(entity);
+			return servicioService.crearServicio(servicioDto);
 		}catch(Exception e) {
 			return null;
 		}
@@ -45,9 +46,9 @@ public class ServicioController {
 	
 	//Editar
 	@PostMapping(path = "/editar", consumes = "application/json", produces = "application/json")
-	public ServicioEntity editarServicio(@RequestBody ServicioEntity entity) {
+	public ServicioDTO editarServicio(@RequestBody ServicioDTO servicioDto) {
 
-		return servicioService.editarServicio(entity);
+		return servicioService.editarServicio(servicioDto);
 	}
 	
 	//Eliminar
@@ -56,4 +57,5 @@ public class ServicioController {
 		
 		servicioService.eliminarServicio(id);
 	}
+	
 }

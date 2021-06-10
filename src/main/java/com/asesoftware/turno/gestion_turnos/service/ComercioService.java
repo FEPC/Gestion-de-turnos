@@ -6,8 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.asesoftware.turno.gestion_turnos.dto.ComercioDTO;
 import com.asesoftware.turno.gestion_turnos.entity.ComercioEntity;
-import com.asesoftware.turno.gestion_turnos.entity.ServicioEntity;
+import com.asesoftware.turno.gestion_turnos.mapper.IComercioMapper;
 import com.asesoftware.turno.gestion_turnos.repository.IComercioRepositorio;
 
 @Service
@@ -15,35 +16,42 @@ public class ComercioService implements IComercioService{
 	
 	@Autowired
 	private IComercioRepositorio comercioRepositorio;
+	
+	@Autowired
+	private IComercioMapper mapperComercio;
 
 	@Override
-	public List<ComercioEntity> obtenerTodo() {
-	
-		return comercioRepositorio.findAll();
+	public List<ComercioDTO> obtenerTodo() {
+		
+		return mapperComercio.listaentityToDto(comercioRepositorio.findAll());
 	}
 
 	@Override
-	public ComercioEntity busquedaId(Integer id) {
+	public ComercioDTO busquedaId(Integer id) {
 		
 		Optional<ComercioEntity> opcional = comercioRepositorio.findById(id);
 		
 		if(opcional.isPresent()) {
-			return opcional.get();
+			return mapperComercio.entityDto(opcional.get());
 		}else {
 			return null;
 		}
 	}
 
 	@Override
-	public ComercioEntity crearComercio(ComercioEntity comercioEntity) {
+	public ComercioDTO crearComercio(ComercioDTO comercioDto) {
 		
-		return comercioRepositorio.save(comercioEntity);
+		ComercioEntity comercioEntity = mapperComercio.dtoEntity(comercioDto);
+		
+		return mapperComercio.entityDto(comercioRepositorio.save(comercioEntity));
 	}
 
 	@Override
-	public ComercioEntity editarComercio(ComercioEntity comercioEntity) {
+	public ComercioDTO editarComercio(ComercioDTO comercioDto) {
 		
-		return comercioRepositorio.save(comercioEntity);
+		ComercioEntity comercioEntity = mapperComercio.dtoEntity(comercioDto);
+		
+		return mapperComercio.entityDto(comercioRepositorio.save(comercioEntity));
 	}
 
 	@Override

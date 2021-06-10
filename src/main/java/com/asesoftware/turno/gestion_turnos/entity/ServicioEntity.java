@@ -1,5 +1,6 @@
 package com.asesoftware.turno.gestion_turnos.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -29,13 +32,15 @@ public class ServicioEntity {
 	private String nom_servicio;
 	
 	@Column(name = "hora_apertura")
-	private String hora_apertura;
+	@Temporal(TemporalType.TIME)
+	private Date hora_apertura;
 	
 	@Column(name = "hora_cierre")
-	private String hora_cierre;
+	@Temporal(TemporalType.TIME)
+	private Date hora_cierre;
 	
 	@Column(name = "duracion")
-	private String duracion;
+	private Integer duracion;
 	
 	@OneToMany(mappedBy = "id_servicio")
 	private List<TurnosEntity> turn;
