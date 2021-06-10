@@ -1,15 +1,11 @@
 package com.asesoftware.turno.gestion_turnos.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.asesoftware.turno.gestion_turnos.dto.TurnosDTO;
-import com.asesoftware.turno.gestion_turnos.entity.TurnosEntity;
+import com.asesoftware.turno.gestion_turnos.dto.ResponseDTO;
 import com.asesoftware.turno.gestion_turnos.service.ITurnosService;
 
 @RestController
@@ -21,7 +17,7 @@ public class TurnosController {
 	
 	//Listar todos los datos
 	@GetMapping(path = "/todos")
-	public List<TurnosDTO> obtenerTodo(){
+	public ResponseDTO obtenerTodo(){
 		return turnosService.obtenerTodo();
 	}
 }

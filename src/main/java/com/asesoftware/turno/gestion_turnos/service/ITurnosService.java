@@ -2,10 +2,10 @@ package com.asesoftware.turno.gestion_turnos.service;
 
 import java.util.List;
 
-import com.asesoftware.turno.gestion_turnos.dto.TurnosDTO;
+import com.asesoftware.turno.gestion_turnos.dto.ResponseDTO;
 
 public interface ITurnosService {
 	
-	public List<TurnosDTO> obtenerTodo();
+	public ResponseDTO obtenerTodo();
 
 }

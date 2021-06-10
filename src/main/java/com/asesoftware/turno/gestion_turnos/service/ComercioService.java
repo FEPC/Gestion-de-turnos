@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.asesoftware.turno.gestion_turnos.dto.ComercioDTO;
+import com.asesoftware.turno.gestion_turnos.dto.ResponseDTO;
 import com.asesoftware.turno.gestion_turnos.entity.ComercioEntity;
 import com.asesoftware.turno.gestion_turnos.mapper.IComercioMapper;
 import com.asesoftware.turno.gestion_turnos.repository.IComercioRepositorio;
@@ -21,43 +23,55 @@ public class ComercioService implements IComercioService{
 	private IComercioMapper mapperComercio;
 
 	@Override
-	public List<ComercioDTO> obtenerTodo() {
+	public ResponseDTO obtenerTodo() {
 		
-		return mapperComercio.listaentityToDto(comercioRepositorio.findAll());
+		return new ResponseDTO(mapperComercio.listaentityToDto(comercioRepositorio.findAll()), true, "Busqueda completada satisfactoriamente", HttpStatus.OK);
 	}
 
 	@Override
-	public ComercioDTO busquedaId(Integer id) {
+	public ResponseDTO busquedaId(Integer id) {
 		
 		Optional<ComercioEntity> opcional = comercioRepositorio.findById(id);
 		
 		if(opcional.isPresent()) {
-			return mapperComercio.entityDto(opcional.get());
+			return new ResponseDTO(mapperComercio.entityDto(opcional.get()), true, "Busqueda completada satisfactoriamente", HttpStatus.OK);
 		}else {
-			return null;
+			return new ResponseDTO(null, false, "Id no encontrado", HttpStatus.OK);
 		}
 	}
 
 	@Override
-	public ComercioDTO crearComercio(ComercioDTO comercioDto) {
+	public ResponseDTO crearComercio(ComercioDTO comercioDto) {
 		
-		ComercioEntity comercioEntity = mapperComercio.dtoEntity(comercioDto);
-		
-		return mapperComercio.entityDto(comercioRepositorio.save(comercioEntity));
+		try {
+			ComercioEntity comercioEntity = mapperComercio.dtoEntity(comercioDto);
+			
+			return new ResponseDTO(mapperComercio.entityDto(comercioRepositorio.save(comercioEntity)), true, "Comercio añadido satisfactoriamente", HttpStatus.OK);
+		}catch(Exception e){
+			
+			return new ResponseDTO(null, false, "El comercio no se pudo crear", HttpStatus.OK);
+		}
 	}
 
 	@Override
-	public ComercioDTO editarComercio(ComercioDTO comercioDto) {
+	public ResponseDTO editarComercio(ComercioDTO comercioDto) {
 		
 		ComercioEntity comercioEntity = mapperComercio.dtoEntity(comercioDto);
 		
-		return mapperComercio.entityDto(comercioRepositorio.save(comercioEntity));
+		return new ResponseDTO(mapperComercio.entityDto(comercioRepositorio.save(comercioEntity)), true, "Comercio editado satisfactoriamente", HttpStatus.OK);
 	}
 
 	@Override
-	public void eliminarComercio(Integer id) {
+	public ResponseDTO eliminarComercio(Integer id) {
 		
-		comercioRepositorio.deleteById(id);
+		try {		
+			comercioRepositorio.deleteById(id);
+			
+			return new ResponseDTO(null, true, "Comercio eliminado satisfactoriamente", HttpStatus.OK);
+		}catch(Exception e) {
+			
+			return new ResponseDTO(null, false, "El comercio no se pudo eliminar", HttpStatus.OK);
+		}
 	}
 
 }
