@@ -24,4 +24,19 @@ public class TurnosDTO {
 	
 	private String estado;
 	
+	public TurnosDTO() {
+		
+	}
+
+	public TurnosDTO(Integer id_turno, Integer id_servicio, Date fecha_turno, Date hora_inicio, Date hora_fin,
+			String estado) {
+		super();
+		this.id_turno = id_turno;
+		this.id_servicio = id_servicio;
+		this.fecha_turno = fecha_turno;
+		this.hora_inicio = hora_inicio;
+		this.hora_fin = hora_fin;
+		this.estado = estado;
+	}
+	
 }
