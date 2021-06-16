@@ -27,4 +27,10 @@ public class TurnosController {
 	public ResponseDTO consultarServicios(@PathVariable Integer idServicio) {
 		return turnosService.consultarServicios(idServicio);
 	}
+	
+	//Listar por comercio
+	@GetMapping(path = "/comercio/{idComercio}")
+	public ResponseDTO consultarComercios(@PathVariable Integer idComercio) {
+		return turnosService.consultarComercios(idComercio);
+	}
 }

@@ -35,4 +35,12 @@ public class TurnosService implements ITurnosService{
 		return new ResponseDTO(mapperTurnos.listaentityToDto(listTurnosEntity), true, "Busqueda completada satisfactoriamente", HttpStatus.OK);
 	}
 
+	@Override
+	public ResponseDTO consultarComercios(Integer idComercio) {
+		
+		List<TurnosEntity> listTurnosEntity = turnosRepositorio.queryIdComercio(idComercio);
+		
+		return new ResponseDTO(mapperTurnos.listaentityToDto(listTurnosEntity), true, "Busqueda completada satisfactoriamente", HttpStatus.OK);
+	}
+
 }
